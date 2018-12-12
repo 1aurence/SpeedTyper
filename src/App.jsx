@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Redirect, withRouter } from 'react-router-dom'
 import Type from './components/type-game/Type'
 import Login from './components/user-form/Login'
 import firebase from './firebase-config'
+import createBrowserHistory from './history';
 
 class App extends Component {
   constructor(props) {
@@ -10,32 +11,33 @@ class App extends Component {
     this.state = {
       username: '',
       user: false,
+      showAlert: false
     }
   }
   submitUsername = () => {
     const userNameRef = firebase.database().ref('users')
     if(!this.state.username.length > 1) {
-       window.alert('Username too short')}
+       this.setState({showAlert:true})}
     //Check if username already exists
     userNameRef.orderByChild('username')
       .equalTo(this.state.username)
       .once('value', v => {
         if (v.val()) {
-          window.alert('Username already in use')
+          this.setState({showAlert:true})
         } else {
           console.log('Username NOT already in use')
           userNameRef.push({ username: this.state.username, highscore: 0 })
-          // this.props.history.push('/type-reacer')
+          this.setState({
+            user: true
+          })
         }
       })
   }
   handleChange = (e) => {
     this.setState({ username: e.target.value })
   }
+
   render() {
-    if (this.state.user) {
-      return <Redirect to='/type-racer' />
-    }
     return (
       <BrowserRouter>
         <div className="">
@@ -44,18 +46,24 @@ class App extends Component {
             exact path='/'
             render={() => (<Login
               username={this.state.username}
+              showAlert={this.state.showAlert}
               submitUsername={this.submitUsername}
               handleChange={this.handleChange} />)}
           />
-        
+        {this.state.user ? (
+          <Redirect to='/type-racer' />
+        ) : null}
           <Route
             path='/type-racer'
-            render={() =>  (
+            render={() =>
               <Type
                 username={this.state.username}
-              />)
+              />
             }
           />
+       
+        )}
+          
         </div>
       </BrowserRouter>
     )
