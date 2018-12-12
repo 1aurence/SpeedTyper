@@ -13,6 +13,8 @@ class App extends Component {
       user: false,
       showAlert: false
     }
+    this.submitUsername = this.submitUsername.bind(this);
+
   }
   submitUsername = () => {
     const userNameRef = firebase.database().ref('users')
@@ -33,6 +35,11 @@ class App extends Component {
         }
       })
   }
+  keyPress = (e) => {
+    if(e.keyCode == 13) {
+      this.submitUsername()
+    }
+  }
   handleChange = (e) => {
     this.setState({ username: e.target.value })
   }
@@ -41,12 +48,13 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="">
-          <nav>WordBeater</nav>
+          <nav id="title">WordBeater</nav>
           <Route
             exact path='/'
             render={() => (<Login
               username={this.state.username}
               showAlert={this.state.showAlert}
+              keyPress={this.keyPress}
               submitUsername={this.submitUsername}
               handleChange={this.handleChange} />)}
           />

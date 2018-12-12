@@ -19,6 +19,9 @@ nav {
   align-items: center;
   justify-content: center;
   margin-bottom: 80px;
+  color:#fff;
+  font-weight: 800;
+  letter-spacing: .1em;
 }
 
 button {

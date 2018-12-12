@@ -24,12 +24,13 @@ export default class Leaderboard extends Component {
   }) 
     return (
       <div id="leaderboard">
+      <nav>   
         <h1>Leaderboard</h1>
         <input 
         onChange={this.handleChange}
         value={this.state.userSearch}
         id="leaderboard-input"placeholder="Search for user..."/>
-        <hr />
+        </nav>
         <ul>
           {userList}
         </ul>

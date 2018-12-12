@@ -24,8 +24,8 @@ export default class Type extends Component {
       users: [],
       inputValue: '',
       currentWord: 'actually',
-      timeLeft: 3,
-      totalCorrect: 0,
+      timeLeft: 30,
+      totalCorrect: -1,
       gameOver: false,
       gameRunning: false,
       listIndex: 0,
@@ -62,7 +62,7 @@ export default class Type extends Component {
     this.setState({
       listIndex: this.state.listIndex + 1
     })
-    if (this.timeLeft !== 0) {
+    if (this.state.timeLeft !== 0) {
       this.setState({
         inputValue: '',
         totalCorrect: this.state.totalCorrect + 1,

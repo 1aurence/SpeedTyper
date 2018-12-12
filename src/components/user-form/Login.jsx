@@ -1,30 +1,33 @@
-import React, { Component } from 'react'
+import React from 'react'
 import './login.css'
 import { Link } from 'react-router-dom'
 
-export default class Login extends Component {
-  render() {
-    return (
-      <div>
-           <div id="login">
-      <h1>Enter a name to get started</h1>
-      <input
-      onChange={this.props.handleChange}
-      placeholder="Enter a name..."
-      ></input> 
-      <br />
-      <button 
-        onClick={this.props.submitUsername}
-        className="btn btn-primary">Let's go!</button>
-    </div>
-    {this.props.showAlert ? (
- <div class="alert alert-warning" role="alert">
- <strong>Warning!</strong> Username already in use
-</div>
-    ) : null
-  }
-   
+
+const Login = (props) => {
+  return (
+    <div>
+      <div id="login">
+        <h1>Enter a name to get started</h1>
+        <input
+          onChange={props.handleChange}
+          onKeyDown={props.keyPress}
+          placeholder="Enter a name..."
+        ></input>
+        <br />
+        <button
+          onClick={props.submitUsername}
+          className="btn btn-primary">Let's go!</button>
       </div>
-    )
-  }
+      {props.showAlert ? (
+        <div class="alert alert-warning" role="alert">
+          <strong>Warning!</strong> Username already in use
+</div>
+      ) : null
+      }
+
+    </div>
+  )
 }
+
+export default Login
+

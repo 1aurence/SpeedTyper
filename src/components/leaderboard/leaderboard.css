@@ -8,10 +8,13 @@
     margin-top:2%;
     text-align: center;
     font-size:2rem;
+    position: relative;
 }
 #leaderboard ul {
     list-style: none;
     padding: 0 5% 0 5%;
+    margin-top: -5%;
+
 }
 #leaderboard ul li{
     display: flex;
@@ -23,4 +26,12 @@
 }
 #leaderboard-input {
     font-size:.8em;
+}
+#leaderboard nav {
+    display: flex;
+    flex-direction: column;
+    height:100px;
+    /* position: fixed; */
+    /* width:600px; */
+    /* top:0; */
 }
