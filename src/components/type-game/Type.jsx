@@ -44,7 +44,7 @@ export default class Type extends Component {
       snap.forEach(childNodes => {
         let username = childNodes.val().username
         let highscore = childNodes.val().highscore
-        userList.push({ username, highscore })
+        userList.push({ username, highscore, userKey })
         this.setState({
           users: userList,
           userKey
