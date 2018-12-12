@@ -7,31 +7,41 @@ export default class Leaderboard extends Component {
     userSearch: ''
   }
   handleChange = (e) => {
-    this.setState({userSearch: e.target.value})
-  }
-  sortDescending = () => {
-
+    this.setState({ userSearch: e.target.value })
   }
   render() {
-    const userList = this.props.users.sort((a,b) => b.highscore - a.highscore).map(user => {
-      return (
-        <li> 
-          <span>User: <span className="user-info">{user.username}</span></span>
-          <span>Highscore: <span className="user-info">{user.highscore}</span></span>
-        </li>
-      )
-    }) 
+    console.log(this.props.users)
+    // const filterUsers = this.props.users.filter(user => {
+    //   if (user.username.toLowerCase().includes(this.state.userSearch)
+    //   ) {
+    //     return (
+    //       <li>
+    //         <span>User: <span className="user-info">{user.username}</span></span>
+    //         <span>Highscore: <span className="user-info">{user.highscore}</span></span>
+    //       </li>
+    //     )
+    //   }
+    // })
+    // const userList = this.props.users.sort((a, b) => b.highscore - a.highscore).map(user => {
+    //   return (
+    //     <li>
+    //       <span>User: <span className="user-info">{user.username}</span></span>
+    //       <span>Highscore: <span className="user-info">{user.highscore}</span></span>
+    //     </li>
+    //   )
+    // })
     return (
       <div id="leaderboard">
-      <nav>   
-        <h1>Leaderboard</h1>
-        <input 
-        onChange={this.handleChange}
-        value={this.state.userSearch}
-        id="leaderboard-input"placeholder="Search for user..."/>
+        <nav>
+          <h1>Leaderboard</h1>
+          <input
+            onChange={this.handleChange}
+            value={this.state.userSearch}
+
+            id="leaderboard-input" placeholder="Search for user..." />
         </nav>
         <ul>
-          {userList}
+          {/* {filterUsers} */}
         </ul>
       </div>
     )
