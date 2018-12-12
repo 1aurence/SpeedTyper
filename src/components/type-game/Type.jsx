@@ -55,7 +55,6 @@ export default class Type extends Component {
   }
   componentDidMount() {
     this.requestNewWord()
-
   }
   requestNewWord = () => {
     let index = this.state.listIndex;

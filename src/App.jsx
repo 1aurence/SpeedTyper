@@ -51,12 +51,14 @@ class App extends Component {
           <nav id="title">WordBeater</nav>
           <Route
             exact path='/'
-            render={() => (<Login
-              username={this.state.username}
-              showAlert={this.state.showAlert}
-              keyPress={this.keyPress}
-              submitUsername={this.submitUsername}
-              handleChange={this.handleChange} />)}
+            render= {() => (
+              <Login
+                username={this.state.username}
+                showAlert={this.state.showAlert}
+                keyPress={this.keyPress}
+                submitUsername={this.submitUsername}
+                handleChange={this.handleChange} />
+            )}
           />
         {this.state.user ? (
           <Redirect to='/type-racer' />

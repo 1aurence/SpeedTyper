@@ -9,19 +9,18 @@ export default class Leaderboard extends Component {
   handleChange = (e) => {
     this.setState({userSearch: e.target.value})
   }
-  render() {
-    // const filteredList = this.props.users.filter(user => {
-    //   if(user.username === this.state.userSearch) {
-    //     return (<li> <span>User: <span className="user-info">{user.username}</span> 
-    //     </span> <span>Highscore: <span className="user-info">{user.highscore}</span></span></li>) 
+  sortDescending = () => {
 
-    //   }
-    // })
-     const userList = this.props.users.map(user => {
-      return (<li> <span>User: <span className="user-info">{user.username}</span> 
-      </span> <span>Highscore: <span className="user-info">{user.highscore}</span></span></li>)
-      
-  }) 
+  }
+  render() {
+    const userList = this.props.users.sort((a,b) => b.highscore - a.highscore).map(user => {
+      return (
+        <li> 
+          <span>User: <span className="user-info">{user.username}</span></span>
+          <span>Highscore: <span className="user-info">{user.highscore}</span></span>
+        </li>
+      )
+    }) 
     return (
       <div id="leaderboard">
       <nav>   
