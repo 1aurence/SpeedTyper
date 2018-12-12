@@ -1,0 +1,26 @@
+#leaderboard {
+    width:600px;
+    height: 600px;
+    overflow: auto;
+    color: #fff;
+    border: 2px solid lightgray;
+    margin: 0 auto;
+    margin-top:2%;
+    text-align: center;
+    font-size:2rem;
+}
+#leaderboard ul {
+    list-style: none;
+    padding: 0 5% 0 5%;
+}
+#leaderboard ul li{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid lightgray;
+}
+.user-info {
+    font-weight: 800;
+}
+#leaderboard-input {
+    font-size:.8em;
+}

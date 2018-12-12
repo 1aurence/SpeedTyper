@@ -1,0 +1,44 @@
+.type-container {
+  text-align: center;
+  background: #5d5e63;
+  color: #fff;
+  height: 100vh;
+}
+
+input {
+  width: 40%;
+  height: 50px;
+  text-align: left;
+  border-radius: 5px;
+  font-size: 2em;
+  font-weight: 600;
+}
+
+input::placeholder {
+  padding-left: 5px;
+}
+
+.instructions {
+  background: #8f959e;
+  width:40%;
+  min-height: 150px;
+  margin: 0 auto;
+  margin-top: 5%;
+}
+
+#word {
+  font-size: 5.5rem;
+}
+
+.instructions h3 {
+  font-weight: 600;
+}
+
+.instructions p {
+  font-size: 1.3em;
+}
+
+#counter {
+  color: #72ff4f;
+}
+
