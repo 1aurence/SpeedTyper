@@ -11,3 +11,7 @@
 #login-input:focus {
     outline: none;
 }
+.alert {
+    background-color: #FFF59D;
+    padding: 1%;
+}

@@ -25,7 +25,7 @@ const Login = (props) => {
       </Button>
       </div>
       {props.showAlert ? (
-        <div class="alert alert-warning" role="alert">
+        <div class="alert" role="alert">
           <strong>Warning!</strong> Username already in use
 </div>
       ) : null

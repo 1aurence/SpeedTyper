@@ -2,6 +2,8 @@
   text-align: center;
   color: #666;
   height: 100vh;
+  text-align: center;
+  font-size: 2rem;
 }
 
 input {
@@ -9,7 +11,7 @@ input {
   height: 50px;
   text-align: left;
   border-radius: 5px;
-  font-size: 2em;
+  font-size: 1em;
   font-weight: 600;
   transition: all .2s ease-in;
 }
@@ -22,9 +24,10 @@ input::placeholder {
 .instructions {
   background: lightgray;
   width:40%;
-  min-height: 150px;
+  min-height: 100px;
   margin: 0 auto;
   margin-top: 5%;
+  font-size: .7em;
 }
 
 #word {

@@ -131,7 +131,7 @@ export default class Type extends Component {
       (<p id="word">{currentWord}</p>) :
       (<p id="word">You scored: {totalCorrect}!</p>);
     return (
-      <div className="type-container container-fluid">
+      <div className="type-container">
         <h4>Hello, <strong>{this.state.currentUser}</strong></h4>
         <h3>Type The Given Word Within <span id="counter">{this.state.timeLeft}</span> seconds</h3>
         {showCurrentWord}

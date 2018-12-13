@@ -44,7 +44,7 @@ export default class Leaderboard extends Component {
         <ul>
           {this.filteredUsers.map(user => {
             return (
-            <li> 
+            <li key={user.userKey}> 
               <span>User: <span className="user-info">{user.username}</span></span>
               <span>Highscore: <span className="user-info">{user.highscore}</span></span>
             </li>
