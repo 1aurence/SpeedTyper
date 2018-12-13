@@ -58,32 +58,30 @@ class App extends Component {
           <Link 
           style={{ textDecoration: 'none' }}
           to="/" id="title">WordBeater</Link>
-          </nav>
-          <Route
-            exact path='/'
-            render= {() => (
-              <Login
-                username={this.state.username}
-                showAlert={this.state.showAlert}
-                keyPress={this.keyPress}
-                submitUsername={this.submitUsername}
-                handleChange={this.handleChange} />
-            )}
-          />
+        </nav>
+        <Route
+          exact path='/'
+          render= {() => (
+            <Login
+              username={this.state.username}
+              showAlert={this.state.showAlert}
+              keyPress={this.keyPress}
+              submitUsername={this.submitUsername}
+              handleChange={this.handleChange} />
+          )}/>
         {this.state.user ? (
           <Redirect to='/type-racer' />
         ) : null}
-          <Route
-            path='/type-racer'
-            render={() =>
-              <Type
+        <Route
+          path='/type-racer'
+          render={() =>
+            <Type
                 username={this.state.username}
               />
             }
-          />      
-            
+          />
         </div>
-            </MuiThemeProvider>
+      </MuiThemeProvider>
       </BrowserRouter>
     )
   }
