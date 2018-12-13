@@ -24,7 +24,7 @@ export default class Type extends Component {
       users: [],
       inputValue: '',
       currentWord: 'actually',
-      timeLeft: 30,
+      timeLeft: 3,
       totalCorrect: -1,
       gameOver: false,
       gameRunning: false,
@@ -41,6 +41,12 @@ export default class Type extends Component {
       let users = snap.val()
       let keys = Object.keys(users)
       let userKey = keys[keys.length - 1]
+      //Set local storage for user
+      localStorage.setItem('user', userKey);
+      let currentUsersKey = localStorage.getItem('user', userKey)
+      userRef.child(currentUsersKey)
+      .once('value')
+      .then(snap => this.setState({currentUser: snap.val().username}))
       snap.forEach(childNodes => {
         let username = childNodes.val().username
         let highscore = childNodes.val().highscore
@@ -51,10 +57,10 @@ export default class Type extends Component {
         })
       })
     })
-
   }
   componentDidMount() {
     this.requestNewWord()
+
   }
   requestNewWord = () => {
     let index = this.state.listIndex;
@@ -117,14 +123,13 @@ export default class Type extends Component {
     }
   }
   render() {
-    console.log(this.state.users)
     const { currentWord, inputValue, totalCorrect } = this.state;
     const showCurrentWord = !this.state.gameOver ?
       (<p id="word">{currentWord}</p>) :
       (<p id="word">You scored: {totalCorrect}!</p>);
     return (
       <div className="type-container container-fluid">
-        <h4>Hello, {this.props.username}</h4>
+        <h4>Hello, {this.state.currentUser}</h4>
         <h3>Type The Given Word Within <span id="counter">{this.state.timeLeft}</span> seconds</h3>
         {showCurrentWord}
         <input

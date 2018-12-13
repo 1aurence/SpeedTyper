@@ -67,7 +67,6 @@ class App extends Component {
             path='/type-racer'
             render={() =>
               <Type
-                username={this.state.username}
               />
             }
           />
