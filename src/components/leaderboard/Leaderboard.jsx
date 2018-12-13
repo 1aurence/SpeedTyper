@@ -4,7 +4,7 @@ import firebase from '../../firebase-config'
 import { isArray } from 'util';
 export default class Leaderboard extends Component {
   state = {
-    userSearch: ''
+    userSearch: '',
   }
   handleChange = (e) => {
     this.setState({ userSearch: e.target.value })
@@ -25,7 +25,6 @@ export default class Leaderboard extends Component {
           <input
             onChange={this.handleChange}
             value={this.state.userSearch}
-
             id="leaderboard-input" placeholder="Search for user..." />
         </nav>
         <ul>
