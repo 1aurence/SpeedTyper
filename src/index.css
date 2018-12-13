@@ -7,11 +7,8 @@ html {
   margin: 0;
   padding: 0;
   font-family: Helvetica;
-  background: #5d5e63;
 }
-
 nav {
-  background: #8f959e;
   width: 100%;
   height: 80px;
   font-size: 2rem;
@@ -19,11 +16,18 @@ nav {
   align-items: center;
   justify-content: center;
   margin-bottom: 80px;
-  color:#fff;
   font-weight: 800;
   letter-spacing: .1em;
+  border-bottom: 1px solid #B0BEC5;
 }
-
+nav a {
+  color: #607D8B;
+  transition: all .2s ease-in;
+}
+nav a:hover {
+  color: #455A64;
+  transform: scale(1.1);
+}
 button {
   width: 200px;
   height: 50px;
@@ -33,4 +37,9 @@ button {
   font-size: 2rem;
   margin-top: 3%;
   cursor: pointer;
+}
+#login-input:focus, #game-input:focus {
+  transform: scale(1.1);
+  box-shadow: 1px 1px 3px rgba(0,0,0,.5);
+  outline:none;
 }

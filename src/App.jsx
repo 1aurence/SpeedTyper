@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
-import { BrowserRouter, Route, Redirect, withRouter } from 'react-router-dom'
+import { BrowserRouter, Route, Redirect, withRouter, Link } from 'react-router-dom'
 import Type from './components/type-game/Type'
 import Login from './components/user-form/Login'
 import firebase from './firebase-config'
 import createBrowserHistory from './history';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+const theme = createMuiTheme();
 
 class App extends Component {
   constructor(props) {
@@ -13,7 +15,11 @@ class App extends Component {
       user: false,
       showAlert: false
     }
+// <<<<<<< Updated upstream
     this.submitUsername = this.submitUsername.bind(this)
+// =======
+    this.submitUsername = this.submitUsername.bind(this);
+// >>>>>>> Stashed changes
   }
   submitUsername = () => {
     const userNameRef = firebase.database().ref('users')
@@ -46,8 +52,13 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
+      <MuiThemeProvider theme={theme}>
         <div className="">
-          <nav id="title">WordBeater</nav>
+        <nav>
+          <Link 
+          style={{ textDecoration: 'none' }}
+          to="/" id="title">WordBeater</Link>
+          </nav>
           <Route
             exact path='/'
             render= {() => (
@@ -69,11 +80,10 @@ class App extends Component {
                 username={this.state.username}
               />
             }
-          />
-       
-        )}
-          
+          />      
+        )}     
         </div>
+            </MuiThemeProvider>
       </BrowserRouter>
     )
   }

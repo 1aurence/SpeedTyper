@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './type.css'
 import Leaderboard from '../leaderboard/Leaderboard'
 import firebase from '../../firebase-config'
+import Button from '@material-ui/core/Button';
 
 export default class Type extends Component {
   constructor(props) {
@@ -58,10 +59,11 @@ export default class Type extends Component {
       })
     })
   }
+
   componentDidMount() {
     this.requestNewWord()
-
   }
+
   requestNewWord = () => {
     let index = this.state.listIndex;
     this.setState({
@@ -76,6 +78,7 @@ export default class Type extends Component {
     }
 
   }
+
   gameOver = () => {
     this.setState({
       gameOver: true,
@@ -83,8 +86,8 @@ export default class Type extends Component {
     })
     const { totalCorrect, userKey } = this.state;
    firebase.database().ref(`users/${userKey}`).update({highscore: totalCorrect})
-
   }
+
   resetGame = () => {
     this.setState({
       inputValue: '',
@@ -96,6 +99,7 @@ export default class Type extends Component {
       listIndex: 0,
     })
   }
+
   startTimer = () => {
     setInterval(() => {
       if (this.state.timeLeft === 0) {
@@ -114,7 +118,7 @@ export default class Type extends Component {
       })
       this.startTimer()
     }
-    if (this.state.inputValue === this.state.currentWord) {
+    else if (this.state.inputValue === this.state.currentWord) {
       this.requestNewWord();
     } else {
       this.setState({
@@ -128,17 +132,22 @@ export default class Type extends Component {
       (<p id="word">You scored: {totalCorrect}!</p>);
     return (
       <div className="type-container container-fluid">
-        <h4>Hello, {this.state.currentUser}</h4>
+        <h4>Hello, <strong>{this.state.currentUser}</strong></h4>
         <h3>Type The Given Word Within <span id="counter">{this.state.timeLeft}</span> seconds</h3>
         {showCurrentWord}
         <input
+          id="game-input"
           value={this.state.inputValue}
           onChange={this.updateInputValue}
           placeholder="Start typing..."
         />
         <br />
-        {this.state.gameOver ? (
-          <button onClick={this.resetGame}>Play again?</button>
+        <br />
+        {this.state.gameOver ? (      
+          <Button 
+          variant="contained" 
+          color="default" 
+          onClick={this.resetGame}>Play again?</Button>
         ) : null}
         <div className="instructions">
           <h3>Instructions</h3>

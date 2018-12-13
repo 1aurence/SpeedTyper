@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^3.6.2",
     "axios": "^0.18.0",
     "firebase": "^5.7.0",
     "history": "^4.7.2",

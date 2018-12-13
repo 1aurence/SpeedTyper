@@ -1,7 +1,8 @@
 import React from 'react'
 import './login.css'
 import { Link } from 'react-router-dom'
-
+import { withStyles, createMuiTheme  } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 
 const Login = (props) => {
   return (
@@ -9,14 +10,19 @@ const Login = (props) => {
       <div id="login">
         <h1>Enter a name to get started</h1>
         <input
+          id="login-input"
           onChange={props.handleChange}
           onKeyDown={props.keyPress}
           placeholder="Enter a name..."
         ></input>
         <br />
-        <button
-          onClick={props.submitUsername}
-          className="btn btn-primary">Let's go!</button>
+        <br />
+           <Button 
+           onClick={props.submitUsername}
+           variant="contained" 
+           color="primary">
+        Let's Go!
+      </Button>
       </div>
       {props.showAlert ? (
         <div class="alert alert-warning" role="alert">
