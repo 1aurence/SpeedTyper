@@ -73,6 +73,7 @@ export default class Type extends Component {
   gameOver = () => {
     this.setState({
       gameOver: true,
+      gameRunning: false,
       inputValue: '',
     })
     const { totalCorrect, userKey } = this.state;
@@ -81,12 +82,11 @@ export default class Type extends Component {
   }
   resetGame = () => {
     this.setState({
-      inputValue: '',
       currentWord: 'actually',
       timeLeft: 1,
       totalCorrect: 0,
       gameOver: false,
-      gameRunning: false,
+      gameRunning: true,
       listIndex: 0,
     })
   }
