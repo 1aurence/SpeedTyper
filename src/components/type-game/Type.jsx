@@ -128,7 +128,7 @@ export default class Type extends Component {
   }
   render() {    const { currentWord, inputValue, totalCorrect } = this.state;
     const showCurrentWord = !this.state.gameOver ?
-      (<p id="word">{currentWord}</p>) :
+      (<p id="word">{currentWord}</p>):
       (<p id="word">You scored: {totalCorrect}!</p>);
     return (
       <div className="type-container">
