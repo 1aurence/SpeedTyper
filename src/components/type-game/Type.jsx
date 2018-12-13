@@ -25,7 +25,7 @@ export default class Type extends Component {
       users: [],
       inputValue: '',
       currentWord: 'actually',
-      timeLeft: 3,
+      timeLeft: 30,
       totalCorrect: -1,
       gameOver: false,
       gameRunning: false,
@@ -92,7 +92,7 @@ export default class Type extends Component {
     this.setState({
       inputValue: '',
       currentWord: 'actually',
-      timeLeft: 3,
+      timeLeft: 30,
       totalCorrect: 0,
       gameOver: false,
       gameRunning: false,
