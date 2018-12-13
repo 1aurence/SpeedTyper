@@ -13,8 +13,7 @@ class App extends Component {
       user: false,
       showAlert: false
     }
-    this.submitUsername = this.submitUsername.bind(this);
-
+    this.submitUsername = this.submitUsername.bind(this)
   }
   submitUsername = () => {
     const userNameRef = firebase.database().ref('users')
@@ -67,6 +66,7 @@ class App extends Component {
             path='/type-racer'
             render={() =>
               <Type
+                username={this.state.username}
               />
             }
           />
