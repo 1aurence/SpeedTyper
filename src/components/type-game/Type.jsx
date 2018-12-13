@@ -26,7 +26,7 @@ export default class Type extends Component {
       currentWord: 'actually',
       timeLeft: 1,
       totalCorrect: -1,
-      gameOver: false,
+      gameOver: true,
       gameRunning: false,
       listIndex: 0,
       currentUser: '',
@@ -102,9 +102,10 @@ export default class Type extends Component {
   }
 
   updateInputValue = (e) => {
-    if (!this.state.gameRunning) {
+    if (!this.state.gameRunning && this.state.gameOver) {
       this.setState({
-        gameRunning: true
+        gameRunning: true,
+        gameOver: false
       })
       this.startTimer()
     }
