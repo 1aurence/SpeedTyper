@@ -24,9 +24,9 @@ export default class Type extends Component {
       users: [],
       inputValue: '',
       currentWord: 'actually',
-      timeLeft: 1,
+      timeLeft: 30,
       totalCorrect: -1,
-      gameOver: true,
+      gameOver: false,
       gameRunning: false,
       listIndex: 0,
       currentUser: '',
@@ -73,7 +73,6 @@ export default class Type extends Component {
   gameOver = () => {
     this.setState({
       gameOver: true,
-      gameRunning: false,
       inputValue: '',
     })
     const { totalCorrect, userKey } = this.state;
@@ -82,11 +81,12 @@ export default class Type extends Component {
   }
   resetGame = () => {
     this.setState({
+      inputValue: '',
       currentWord: 'actually',
-      timeLeft: 1,
+      timeLeft: 3,
       totalCorrect: 0,
       gameOver: false,
-      gameRunning: true,
+      gameRunning: false,
       listIndex: 0,
     })
   }
@@ -102,10 +102,9 @@ export default class Type extends Component {
   }
 
   updateInputValue = (e) => {
-    if (!this.state.gameRunning && this.state.gameOver) {
+    if (!this.state.gameRunning) {
       this.setState({
-        gameRunning: true,
-        gameOver: false
+        gameRunning: true
       })
       this.startTimer()
     }
