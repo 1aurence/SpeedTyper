@@ -2,36 +2,23 @@ import React, { Component } from 'react'
 import './type.css'
 import Leaderboard from '../leaderboard/Leaderboard'
 import firebase from '../../firebase-config'
-import Button from '@material-ui/core/Button';
+import Button from '@material-ui/core/Button'
+import axios from 'axios'
 
 export default class Type extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      words: [
-        "able",
-        "about",
-        "above",
-        "accept",
-        "according",
-        'account',
-        "across",
-        'act',
-        'action',
-        'activity',
-        "actually",
-        'add'
-      ],
       users: [],
       inputValue: '',
-      currentWord: 'actually',
-      timeLeft: 30,
+      currentWord: null,
+      timeLeft: 8,
       totalCorrect: -1,
       gameOver: false,
       gameRunning: false,
-      listIndex: 0,
       currentUser: '',
-      userKey: null
+      userKey: null,
+      correctLetters: 0
     };
   }
   componentWillMount() {
@@ -42,12 +29,12 @@ export default class Type extends Component {
       let users = snap.val()
       let keys = Object.keys(users)
       let userKey = keys[keys.length - 1]
-      //Set local storage for user
+      //Set local storage for user to handle page refresh on game page
       localStorage.setItem('user', userKey);
       let currentUsersKey = localStorage.getItem('user', userKey)
       userRef.child(currentUsersKey)
-      .once('value')
-      .then(snap => this.setState({currentUser: snap.val().username}))
+        .once('value')
+        .then(snap => this.setState({ currentUser: snap.val().username }))
       snap.forEach(childNodes => {
         let username = childNodes.val().username
         let highscore = childNodes.val().highscore
@@ -59,40 +46,35 @@ export default class Type extends Component {
       })
     })
   }
-
   componentDidMount() {
     this.requestNewWord()
   }
-
   requestNewWord = () => {
-    let index = this.state.listIndex;
-    this.setState({
-      listIndex: this.state.listIndex + 1
-    })
+    // TODO: add random word api 
+   axios.get('http://api.wordnik.com/v4/words.json/randomWord?api_key=98198eea1bbc3eef9800e0b79940146163e44155e8ff61f19')
+   .then(res => this.setState({currentWord: res.data.word}))
     if (this.state.timeLeft !== 0) {
       this.setState({
         inputValue: '',
         totalCorrect: this.state.totalCorrect + 1,
-        currentWord: this.state.words[index]
       })
     }
-
   }
-
   gameOver = () => {
     this.setState({
       gameOver: true,
       inputValue: '',
     })
+    // Set users highscore
     const { totalCorrect, userKey } = this.state;
-   firebase.database().ref(`users/${userKey}`).update({highscore: totalCorrect})
+    firebase.database().ref(`users/${userKey}`).update({ highscore: totalCorrect })
   }
 
   resetGame = () => {
     this.setState({
       inputValue: '',
       currentWord: 'actually',
-      timeLeft: 30,
+      timeLeft: 8,
       totalCorrect: 0,
       gameOver: false,
       gameRunning: false,
@@ -125,10 +107,12 @@ export default class Type extends Component {
         inputValue: e.target.value
       })
     }
+
   }
-  render() {    const { currentWord, inputValue, totalCorrect } = this.state;
+  render() {
+    const { currentWord, inputValue, totalCorrect } = this.state;
     const showCurrentWord = !this.state.gameOver ?
-      (<p id="word">{currentWord}</p>):
+      (<p id="word">{currentWord}</p>) :
       (<p id="word">You scored: {totalCorrect}!</p>);
     return (
       <div className="type-container">
@@ -143,11 +127,11 @@ export default class Type extends Component {
         />
         <br />
         <br />
-        {this.state.gameOver ? (      
-          <Button 
-          variant="contained" 
-          color="default" 
-          onClick={this.resetGame}>Play again?</Button>
+        {this.state.gameOver ? (
+          <Button
+            variant="contained"
+            color="default"
+            onClick={this.resetGame}>Play again?</Button>
         ) : null}
         <div className="instructions">
           <h3>Instructions</h3>

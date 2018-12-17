@@ -23,7 +23,7 @@ input::placeholder {
 
 .instructions {
   background: lightgray;
-  width:40%;
+  width: 40%;
   min-height: 100px;
   margin: 0 auto;
   margin-top: 5%;
@@ -45,4 +45,3 @@ input::placeholder {
 #counter {
   color: #72ff4f;
 }
-

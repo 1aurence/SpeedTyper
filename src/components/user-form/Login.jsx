@@ -1,7 +1,7 @@
 import React from 'react'
 import './login.css'
 import { Link } from 'react-router-dom'
-import { withStyles, createMuiTheme  } from '@material-ui/core/styles';
+import { withStyles, createMuiTheme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
 const Login = (props) => {
@@ -17,11 +17,11 @@ const Login = (props) => {
         ></input>
         <br />
         <br />
-           <Button 
-           onClick={props.submitUsername}
-           variant="contained" 
-           color="primary">
-        Let's Go!
+        <Button
+          onClick={props.submitUsername}
+          variant="contained"
+          color="primary">
+          Let's Go!
       </Button>
       </div>
       {props.showAlert ? (
